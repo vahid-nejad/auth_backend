@@ -1,4 +1,5 @@
 import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
+import { Product } from './entities/product.entity';
 
 const config: MysqlConnectionOptions = {
   type: 'mariadb',
@@ -7,7 +8,7 @@ const config: MysqlConnectionOptions = {
   username: 'root',
   password: '',
   port: 3306,
-  entities: [],
+  entities: [Product],
   synchronize: true,
 };
 
