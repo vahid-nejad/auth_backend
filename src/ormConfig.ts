@@ -1,14 +1,17 @@
 import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
+
+
 import { Product } from './entities/product.entity';
 
-const config: MysqlConnectionOptions = {
+const config:MysqlConnectionOptions = {
   type: 'mariadb',
   database: 'sakura',
   host: 'localhost',
   username: 'root',
   password: '',
   port: 3306,
-  entities: [Product],
+ autoLoadEntities:true
+  ,
   synchronize: true,
 };
 
