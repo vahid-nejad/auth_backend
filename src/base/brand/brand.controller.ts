@@ -14,6 +14,8 @@ export class BrandController {
 
     @Post()
     async create(@Body() createBrandDto:CreateBrandDto){
-        return await  this.brandService.create(createBrandDto);
+        const res= await  this.brandService.create(createBrandDto);
+        console.log(res);
+        return res;
     }
 }

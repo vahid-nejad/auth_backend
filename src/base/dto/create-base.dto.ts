@@ -8,3 +8,5 @@ export class CreateBrandDto {
 
 
 export class UpdateBrandDto extends PartialType (CreateBrandDto) {}
+
+

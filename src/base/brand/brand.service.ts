@@ -14,8 +14,8 @@ export class BrandService {
     }
 
    async create(createBrandDto: CreateBrandDto){
-       console.log(createBrandDto)
-    const brand=         this.brandRepository.create(createBrandDto);
-return this.brandRepository.save(brand)
+
+    const brand=     this.brandRepository.create(createBrandDto);
+    return await this.brandRepository.save(brand)
     }
 }

@@ -12,11 +12,13 @@ import { SpecificCategory } from 'src/entities/specificCategory.entity';
 import { BaseController } from './base.controller';
 import { BrandController } from './brand/brand.controller';
 import { BrandService } from './brand/brand.service';
+import { CategoryController } from './category/category.controller';
+import { CategoryService } from './category/category.service';
 
 @Module({  
-  controllers: [ BaseController, BrandController],
+  controllers: [ BaseController, BrandController, CategoryController],
   imports: [TypeOrmModule.forFeature([Brand,Color,ProductCategory,ProductColorVariant,ProductSpecific,ProductVariant,ProductVariantPrototype,Specific,SpecificCategory])],
-  providers: [BrandService],
+  providers: [BrandService, CategoryService],
   
 })
 export class BaseModule {}
