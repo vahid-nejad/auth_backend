@@ -14,11 +14,15 @@ import { BrandController } from './brand/brand.controller';
 import { BrandService } from './brand/brand.service';
 import { CategoryController } from './category/category.controller';
 import { CategoryService } from './category/category.service';
+import { ColorController } from './color/color.controller';
+import { ColorService } from './color/color.service';
+import { SpecificController } from './specific/specific.controller';
+import { SpecificService } from './specific/specific.service';
 
 @Module({  
-  controllers: [ BaseController, BrandController, CategoryController],
+  controllers: [ BaseController, BrandController, CategoryController, ColorController, SpecificController],
   imports: [TypeOrmModule.forFeature([Brand,Color,ProductCategory,ProductColorVariant,ProductSpecific,ProductVariant,ProductVariantPrototype,Specific,SpecificCategory])],
-  providers: [BrandService, CategoryService],
+  providers: [BrandService, CategoryService, ColorService, SpecificService],
   
 })
 export class BaseModule {}
