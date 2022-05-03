@@ -18,11 +18,13 @@ import { ColorController } from './color/color.controller';
 import { ColorService } from './color/color.service';
 import { SpecificController } from './specific/specific.controller';
 import { SpecificService } from './specific/specific.service';
+import { VariantController } from './variant/variant.controller';
+import { VariantService } from './variant/variant.service';
 
 @Module({  
-  controllers: [ BaseController, BrandController, CategoryController, ColorController, SpecificController],
+  controllers: [ BaseController, BrandController, CategoryController, ColorController, SpecificController, VariantController],
   imports: [TypeOrmModule.forFeature([Brand,Color,ProductCategory,ProductColorVariant,ProductSpecific,ProductVariant,ProductVariantPrototype,Specific,SpecificCategory])],
-  providers: [BrandService, CategoryService, ColorService, SpecificService],
+  providers: [BrandService, CategoryService, ColorService, SpecificService, VariantService],
   
 })
 export class BaseModule {}

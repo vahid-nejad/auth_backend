@@ -1,24 +1,27 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Res } from '@nestjs/common';
-import { response } from 'express';
+import { Body, Controller, Delete, Get,  Param, Patch, Post, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+
+import { CreateProductDto } from './dto/product.dto';
+import { ProductService } from './product.service';
 
 @Controller('product')
 export class ProductController {
+    constructor(private readonly productService:ProductService){}
 
     @Get()
-
-    getAll(@Res() response){
-        return response.status(401).send( 'This action returns all products');
+    findAll(){
+        return this.productService.findAll();
     }
 
     @Get('/:id')
-    getOne(@Param()param){
-        return `This action returns a #${param.id} product`;
+    findOne(@Param("id") id:number){
+        return `This action returns a #${id} product`;
     }
 
     @Post()
-    @HttpCode(HttpStatus.ACCEPTED)
-    create(@Body("name") body){
-        return body;
+    @UseInterceptors(FileInterceptor('file'))
+    create(@Body() createProductDto:CreateProductDto,   @UploadedFile() file: Express.Multer.File,){
+        return {file: file.filename};
     }
 
     @Patch(":id")
