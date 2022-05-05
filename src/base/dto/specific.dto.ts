@@ -1,15 +1,20 @@
-import { IsNumber, IsString } from "class-validator";
+import { IsNumber, IsString } from 'class-validator';
 
 export class CreateSpecificDto {
-    @IsString()
-    name:string;
+  @IsString()
+  name: string;
 
-    @IsNumber()
-    categoryId:number;
+  @IsNumber()
+  categoryId: number;
 }
 export class CreateSpecificCategoryDto {
-    @IsString()
-    name:string;
+  @IsString()
+  name: string;
+}
 
-   
+export class CreateProductSpecificDto {
+  @IsNumber()
+  specificId: number;
+  @IsString()
+  value: string;
 }
