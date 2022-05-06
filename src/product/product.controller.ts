@@ -32,7 +32,7 @@ export class ProductController {
 
   @Get('/:id')
   findOne(@Param('id') id: number) {
-    return `This action returns a #${id} product`;
+    return this.productService.findWithDetails(id);
   }
 
   @Post()

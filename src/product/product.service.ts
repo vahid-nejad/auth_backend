@@ -78,4 +78,22 @@ export class ProductService {
       relations: ['colorVariants'],
     });
   }
+  async findWithDetails(id: number): Promise<Product> {
+    return await this.productRepo.findOne({
+      where: { id: id },
+      relations: [
+        'colorVariants',
+        'colorVariants.color',
+        'specifics',
+        'specifics.specific',
+        'specifics.specific.category',
+        'descriptions',
+        'variants',
+        'variants.varinat',
+        'category',
+        'category.parent',
+        'brand',
+      ],
+    });
+  }
 }
