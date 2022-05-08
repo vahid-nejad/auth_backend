@@ -1,6 +1,12 @@
+import { City } from './entities/city.entity';
+import { Province } from './entities/province.entity';
+import { Answer } from './entities/answer.entity';
+import { Question } from './entities/question.entity';
+import { User } from './entities/user.entity';
 import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
 import { Brand } from './entities/brand.entity';
 import { Color } from './entities/color.entity';
+import { Comment } from 'src/entities/comment.entity';
 
 import { Product } from './entities/product.entity';
 import { ProductCategory } from './entities/productCategory.entity';
@@ -31,6 +37,12 @@ const config: MysqlConnectionOptions = {
     Specific,
     SpecificCategory,
     ProductDescription,
+    User,
+    Question,
+    Answer,
+    Comment,
+    Province,
+    City,
   ],
 
   synchronize: true,

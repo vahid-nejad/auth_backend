@@ -6,12 +6,15 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Answer } from './answer.entity';
 import { Brand } from './brand.entity';
+import { Comment } from './comment.entity';
 import { ProductCategory } from './productCategory.entity';
 import { ProductColorVariant } from './productColorVariant.entity';
 import { ProductDescription } from './productDescription.entity';
 import { ProductSpecific } from './productSpecific.entity';
 import { ProductVariant } from './productVariant.entity';
+import { Question } from './question.entity';
 
 @Entity()
 export class Product {
@@ -67,5 +70,16 @@ export class Product {
       cascade: true,
     },
   )
+  @OneToMany(
+    (type) => ProductDescription,
+    (productDescription) => productDescription.product,
+  )
   descriptions: ProductDescription[];
+
+  @OneToMany((type) => Comment, (comment) => comment.product)
+  comments?: Comment[];
+  @OneToMany((type) => Question, (question) => question.product)
+  questions?: Question[];
+  @OneToMany((type) => Answer, (answer) => answer.product)
+  answers?: Answer[];
 }
