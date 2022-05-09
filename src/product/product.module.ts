@@ -21,6 +21,10 @@ import { SpecificCategory } from 'src/entities/specificCategory.entity';
 import { User } from 'src/entities/user.entity';
 import { ProductController } from './product.controller';
 import { ProductService } from './product.service';
+import { CommentController } from './comment/comment.controller';
+import { CommentService } from './comment/comment.service';
+import { QuestionController } from './question/question.controller';
+import { QuestionService } from './question/question.service';
 
 @Module({
   imports: [
@@ -46,7 +50,7 @@ import { ProductService } from './product.service';
     BaseModule,
   ],
   exports: [], // [TypeOrmModule],
-  controllers: [ProductController],
-  providers: [ProductService],
+  controllers: [ProductController, CommentController, QuestionController],
+  providers: [ProductService, CommentService, QuestionService],
 })
 export class ProductModule {}

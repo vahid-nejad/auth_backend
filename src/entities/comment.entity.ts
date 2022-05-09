@@ -18,9 +18,9 @@ export class Comment {
   @Column()
   body: string;
 
-  @Column()
+  @Column({ default: 0 })
   likeNum: number;
-  @Column()
+  @Column({ default: 0 })
   dislikeNum: number;
 }
 export const enum Recommandation {
