@@ -24,7 +24,7 @@ export class QuestionService {
   ): Promise<Question[]> {
     return await this.questionRepo.find({
       where: { product: { id: productid } },
-      relations: ['user:{id}'],
+      relations: ['user'],
       skip: page * limit,
       take: limit,
     });

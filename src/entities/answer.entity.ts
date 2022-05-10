@@ -13,10 +13,6 @@ import { User } from './user.entity';
 export class Answer {
   @PrimaryGeneratedColumn()
   id: number;
-  @ManyToOne((type) => Product, (product) => product.answers, {
-    nullable: false,
-  })
-  product: Product;
 
   @ManyToOne((type) => User, (user) => user.answers, {
     nullable: false,

@@ -25,6 +25,8 @@ import { CommentController } from './comment/comment.controller';
 import { CommentService } from './comment/comment.service';
 import { QuestionController } from './question/question.controller';
 import { QuestionService } from './question/question.service';
+import { AnswerController } from './answer/answer.controller';
+import { AnswerService } from './answer/answer.service';
 
 @Module({
   imports: [
@@ -50,7 +52,7 @@ import { QuestionService } from './question/question.service';
     BaseModule,
   ],
   exports: [], // [TypeOrmModule],
-  controllers: [ProductController, CommentController, QuestionController],
-  providers: [ProductService, CommentService, QuestionService],
+  controllers: [ProductController, CommentController, QuestionController, AnswerController],
+  providers: [ProductService, CommentService, QuestionService, AnswerService],
 })
 export class ProductModule {}

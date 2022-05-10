@@ -80,6 +80,4 @@ export class Product {
   comments?: Comment[];
   @OneToMany((type) => Question, (question) => question.product)
   questions?: Question[];
-  @OneToMany((type) => Answer, (answer) => answer.product)
-  answers?: Answer[];
 }
