@@ -6,9 +6,22 @@ import { ProductModule } from './product/product.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BaseModule } from './base/base.module';
 import config from './ormConfig';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { join } from 'path';
 
 @Module({
-  imports: [ProductModule, BaseModule, TypeOrmModule.forRoot(config)],
+  imports: [
+    ProductModule,
+    BaseModule,
+    TypeOrmModule.forRoot(config),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      autoSchemaFile: true,
+      driver: ApolloDriver,
+      debug: false,
+      playground: true,
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

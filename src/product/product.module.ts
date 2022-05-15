@@ -1,3 +1,4 @@
+import { AnswerResolver } from './answer/answer.resolver';
 import { Comment } from 'src/entities/comment.entity';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -52,7 +53,18 @@ import { AnswerService } from './answer/answer.service';
     BaseModule,
   ],
   exports: [], // [TypeOrmModule],
-  controllers: [ProductController, CommentController, QuestionController, AnswerController],
-  providers: [ProductService, CommentService, QuestionService, AnswerService],
+  controllers: [
+    ProductController,
+    CommentController,
+    QuestionController,
+    AnswerController,
+  ],
+  providers: [
+    ProductService,
+    CommentService,
+    QuestionService,
+    AnswerService,
+    AnswerResolver,
+  ],
 })
 export class ProductModule {}

@@ -1,3 +1,4 @@
+import { Field, ObjectType, Int } from '@nestjs/graphql';
 import { Product } from 'src/entities/product.entity';
 import {
   Column,
@@ -10,17 +11,28 @@ import { Answer } from './answer.entity';
 import { User } from './user.entity';
 
 @Entity()
+@ObjectType()
 export class Question {
+  @Field((type) => Int)
   @PrimaryGeneratedColumn()
   id: number;
+
+  @Field((type) => User)
   @ManyToOne((type) => User, (user) => user.questions)
   user: User;
+
+  @Field()
   @Column()
   date: Date;
   @Column()
+  @Field()
   body: string;
+
+  @Field((type) => [Answer])
   @OneToMany((type) => Answer, (answer) => answer.question)
   answers: Answer[];
+
+  @Field((type) => Product)
   @ManyToOne((type) => Product, (product) => product.questions)
   product: Product;
 }

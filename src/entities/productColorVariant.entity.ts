@@ -1,19 +1,38 @@
-import { Column, Entity, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryColumn,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Color } from './color.entity';
 import { Product } from './product.entity';
 
 @Entity()
+@ObjectType()
 export class ProductColorVariant {
+  @Field((type) => Int)
   @PrimaryGeneratedColumn()
-  id:number
-  @ManyToOne(type=>Color, color=>color.code)
+  id: number;
+
+  @Field((type) => Color)
+  @ManyToOne((type) => Color, (color) => color.code)
   color: Color;
+
+  @Field((type) => Int)
   @Column()
   price: number;
+
+  @Field((type) => Int, { nullable: true })
   @Column()
   discount?: number;
-  @Column() 
+
+  @Field((type) => Int)
+  @Column()
   stock: number;
-  @ManyToOne(type => Product, product => product.colorVariants)
-  product:Product
-  }
+
+  @Field((type) => Product)
+  @ManyToOne((type) => Product, (product) => product.colorVariants)
+  product: Product;
+}

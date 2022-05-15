@@ -21,6 +21,10 @@ export class AnswerController {
     return this.answerService.findAllQuestionAnswer(questionIDsdto);
   }
 
+  @Get('/all')
+  findAll() {
+    return this.answerService.findAll();
+  }
   @Post()
   create(@Body() createAnswerDto: CreateAnswerDto) {
     return this.answerService.create(createAnswerDto);

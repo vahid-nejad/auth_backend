@@ -9,8 +9,7 @@ export class CreateQuestionDto {
   user: {
     id: number;
   };
-  @IsString()
-  title: string;
+
   @IsString()
   body: string;
 }

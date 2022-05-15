@@ -1,3 +1,4 @@
+import { Field, ObjectType, Int } from '@nestjs/graphql';
 import {
   Column,
   Entity,
@@ -11,19 +12,32 @@ import { Comment } from './comment.entity';
 import { Question } from './question.entity';
 
 @Entity()
+@ObjectType()
 export class User {
+  @Field((type) => Int)
   @PrimaryGeneratedColumn()
   id: number;
+
+  @Field()
   @Column()
   name: string;
+
+  @Field()
   @Column()
   email: string;
+
+  @Field()
   @Column()
   password?: string;
+
+  @Field()
   @Column()
   phone?: string;
+
+  @Field()
   @Column()
   address?: string;
+
   @ManyToOne((type) => City, (city) => city.id)
   city?: City;
   @Column()

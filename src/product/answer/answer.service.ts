@@ -15,9 +15,11 @@ export class AnswerService {
   ) {}
 
   async findAllQuestionAnswer(questionIDsdto: FindMultiPleQuestionAnswerDto) {
-    return await this.answerRepo.find({where:{
-        question:{id:,}
-    }})
+    return await this.answerRepo.find({
+      where: {
+        question: { id: questionIDsdto.questionIDs },
+      },
+    });
   }
 
   async create(createAnswerDto: CreateAnswerDto) {
@@ -37,5 +39,8 @@ export class AnswerService {
       skip: page * limit,
       take: limit,
     });
+  }
+  async findAll(): Promise<Answer[]> {
+    return await this.answerRepo.find({ relations: ['user', 'question'] });
   }
 }
