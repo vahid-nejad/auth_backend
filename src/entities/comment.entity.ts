@@ -1,8 +1,15 @@
 import { type } from 'os';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Product } from 'src/entities/product.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { User } from './user.entity';
+import { CommentPoint } from './commentPoint.entity';
 
 @Entity()
 @ObjectType()
@@ -42,6 +49,10 @@ export class Comment {
   @Field((type) => Int)
   @Column({ default: 0 })
   dislikeNum: number;
+
+  @Field((type) => [CommentPoint])
+  @OneToMany((type) => CommentPoint, (point) => point.comment)
+  points: CommentPoint[];
 }
 export const enum Recommandation {
   NoIdea = 0,

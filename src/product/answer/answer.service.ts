@@ -28,16 +28,10 @@ export class AnswerService {
 
     return await this.answerRepo.save(answer);
   }
-  async findAllByQuestionID(
-    questionID: number,
-    page: number,
-    limit: number,
-  ): Promise<Answer[]> {
+  async findAllByQuestionID(questionID: number): Promise<Answer[]> {
     return await this.answerRepo.find({
       where: { question: { id: questionID } },
       relations: ['user'],
-      skip: page * limit,
-      take: limit,
     });
   }
   async findAll(): Promise<Answer[]> {

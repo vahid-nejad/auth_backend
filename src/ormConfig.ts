@@ -17,6 +17,7 @@ import { ProductVariant } from './entities/productVariant.entity';
 import { ProductVariantPrototype } from './entities/productVariantPrototype.entity';
 import { Specific } from './entities/specific.entity';
 import { SpecificCategory } from './entities/specificCategory.entity';
+import { CommentPoint } from './entities/commentPoint.entity';
 
 const config: MysqlConnectionOptions = {
   type: 'mysql',
@@ -43,6 +44,7 @@ const config: MysqlConnectionOptions = {
     Comment,
     Province,
     City,
+    CommentPoint,
   ],
 
   synchronize: true,

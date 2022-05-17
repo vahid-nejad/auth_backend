@@ -24,11 +24,12 @@ export class Question {
   @Field()
   @Column()
   date: Date;
+
   @Column()
   @Field()
   body: string;
 
-  @Field((type) => [Answer])
+  @Field((type) => [Answer], { nullable: true })
   @OneToMany((type) => Answer, (answer) => answer.question)
   answers: Answer[];
 

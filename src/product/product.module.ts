@@ -1,3 +1,6 @@
+import { CommentPoint } from './../entities/commentPoint.entity';
+import { CommentResolver } from './comment/comment.resolver';
+import { QuestionResolver } from './question/question.resolver';
 import { AnswerResolver } from './answer/answer.resolver';
 import { Comment } from 'src/entities/comment.entity';
 import { Module } from '@nestjs/common';
@@ -49,6 +52,7 @@ import { AnswerService } from './answer/answer.service';
       Comment,
       Province,
       City,
+      CommentPoint,
     ]),
     BaseModule,
   ],
@@ -65,6 +69,8 @@ import { AnswerService } from './answer/answer.service';
     QuestionService,
     AnswerService,
     AnswerResolver,
+    QuestionResolver,
+    CommentResolver,
   ],
 })
 export class ProductModule {}

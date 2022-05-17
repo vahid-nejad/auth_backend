@@ -8,12 +8,8 @@ export class AnswerController {
   constructor(private readonly answerService: AnswerService) {}
 
   @Get(':id')
-  findAllByQuestionID(
-    @Param('id') questionID: number,
-    @Query('page') page: number,
-    @Query('limit') limit: number,
-  ) {
-    return this.answerService.findAllByQuestionID(questionID, page, limit);
+  findAllByQuestionID(@Param('id') questionID: number) {
+    return this.answerService.findAllByQuestionID(questionID);
   }
 
   @Post('/all')
