@@ -6,10 +6,12 @@ import {
   Entity,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { User } from './user.entity';
 import { CommentPoint } from './commentPoint.entity';
+import { CommentScore } from './commentScore.entity';
 
 @Entity()
 @ObjectType()
@@ -30,9 +32,9 @@ export class Comment {
   @ManyToOne((type) => Product, (product) => product.comments)
   product?: Product;
 
-  @Field((type) => Int)
-  @Column()
-  recommandation: Recommandation;
+  // @Field((type) => Int)
+  // @Column()
+  // recommandation: Recommandation;
 
   @Field()
   @Column()
@@ -50,12 +52,18 @@ export class Comment {
   @Column({ default: 0 })
   dislikeNum: number;
 
-  @Field((type) => [CommentPoint])
-  @OneToMany((type) => CommentPoint, (point) => point.comment)
+  @Field((type) => [CommentPoint], { nullable: true })
+  @OneToMany((type) => CommentPoint, (point) => point.comment, {
+    cascade: true,
+  })
   points: CommentPoint[];
+
+  @Field((type) => CommentScore)
+  @OneToOne((type) => CommentScore, (score) => score.comment, { cascade: true })
+  score: CommentScore;
 }
-export const enum Recommandation {
-  NoIdea = 0,
-  DoRecommand,
-  NotRecommand,
-}
+// export const enum Recommandation {
+//   NoIdea = 0,
+//   DoRecommand,
+//   NotRecommand,
+// }

@@ -1,5 +1,4 @@
 import { IsNumber, IsObject, IsString } from 'class-validator';
-import { Recommandation } from 'src/entities/comment.entity';
 
 export class CreateCommentDto {
   @IsObject()
@@ -14,6 +13,18 @@ export class CreateCommentDto {
   title: string;
   @IsString()
   body: string;
-  @IsNumber()
-  recommandation: Recommandation;
+
+  @IsObject()
+  score: {
+    valueByPrice: number;
+    design: number;
+    physicalBeauty: number;
+    performance: number;
+  };
+
+  @IsObject({ each: true })
+  points: {
+    text: string;
+    isPositive: boolean;
+  }[];
 }

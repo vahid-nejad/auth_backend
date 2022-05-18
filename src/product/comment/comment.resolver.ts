@@ -1,10 +1,21 @@
+import { PointService } from './point/point.service';
 import { CommentService } from './comment.service';
-import { Args, Int, Query, Resolver } from '@nestjs/graphql';
+import {
+  Args,
+  Int,
+  Parent,
+  Query,
+  ResolveField,
+  Resolver,
+} from '@nestjs/graphql';
 import { Comment } from 'src/entities/comment.entity';
 
 @Resolver((of) => Comment)
 export class CommentResolver {
-  constructor(private commentService: CommentService) {}
+  constructor(
+    private commentService: CommentService,
+    private pointService: PointService,
+  ) {}
 
   @Query((returns) => [Comment])
   async comments(
@@ -13,5 +24,11 @@ export class CommentResolver {
     @Args('limit', { type: () => Int }) limit: number,
   ) {
     return await this.commentService.findAllByProductID(productID, page, limit);
+  }
+
+  @ResolveField()
+  async points(@Parent() comment: Comment) {
+    const { id } = comment;
+    return this.pointService.findAllByCommentID(id);
   }
 }

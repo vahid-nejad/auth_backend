@@ -1,3 +1,4 @@
+import { CommentScore } from './../entities/commentScore.entity';
 import { CommentPoint } from './../entities/commentPoint.entity';
 import { CommentResolver } from './comment/comment.resolver';
 import { QuestionResolver } from './question/question.resolver';
@@ -31,6 +32,7 @@ import { QuestionController } from './question/question.controller';
 import { QuestionService } from './question/question.service';
 import { AnswerController } from './answer/answer.controller';
 import { AnswerService } from './answer/answer.service';
+import { PointService } from './comment/point/point.service';
 
 @Module({
   imports: [
@@ -53,6 +55,7 @@ import { AnswerService } from './answer/answer.service';
       Province,
       City,
       CommentPoint,
+      CommentScore,
     ]),
     BaseModule,
   ],
@@ -71,6 +74,7 @@ import { AnswerService } from './answer/answer.service';
     AnswerResolver,
     QuestionResolver,
     CommentResolver,
+    PointService,
   ],
 })
 export class ProductModule {}

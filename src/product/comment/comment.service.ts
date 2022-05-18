@@ -1,3 +1,4 @@
+import { CommentScore } from './../../entities/commentScore.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Comment } from 'src/entities/comment.entity';
@@ -9,6 +10,8 @@ export class CommentService {
   constructor(
     @InjectRepository(Comment)
     private readonly commentRepo: Repository<Comment>,
+    @InjectRepository(CommentScore)
+    private readonly commentScoreRepo: Repository<CommentScore>,
   ) {}
   async findAllByProductID(
     productid: number,
@@ -25,7 +28,6 @@ export class CommentService {
   async create(createCommentDto: CreateCommentDto): Promise<Comment> {
     const comment = this.commentRepo.create(createCommentDto);
     comment.date = new Date();
-
     return await this.commentRepo.save(comment);
   }
 }

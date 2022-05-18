@@ -1,3 +1,4 @@
+import { CommentScore } from './entities/commentScore.entity';
 import { City } from './entities/city.entity';
 import { Province } from './entities/province.entity';
 import { Answer } from './entities/answer.entity';
@@ -45,6 +46,7 @@ const config: MysqlConnectionOptions = {
     Province,
     City,
     CommentPoint,
+    CommentScore,
   ],
 
   synchronize: true,
