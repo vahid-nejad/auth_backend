@@ -25,6 +25,7 @@ export class AnswerService {
   async create(createAnswerDto: CreateAnswerDto) {
     const answer = this.answerRepo.create(createAnswerDto);
     answer.date = new Date();
+    console.log(answer);
 
     return await this.answerRepo.save(answer);
   }

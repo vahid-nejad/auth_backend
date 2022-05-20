@@ -14,6 +14,7 @@ export class QuestionService {
   async create(createQuestionDto: CreateQuestionDto) {
     const question = this.questionRepo.create(createQuestionDto);
     question.date = new Date();
+    console.log(question);
 
     return await this.questionRepo.save(question);
   }

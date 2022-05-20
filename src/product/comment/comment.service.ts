@@ -28,6 +28,7 @@ export class CommentService {
   async create(createCommentDto: CreateCommentDto): Promise<Comment> {
     const comment = this.commentRepo.create(createCommentDto);
     comment.date = new Date();
+
     return await this.commentRepo.save(comment);
   }
 }
