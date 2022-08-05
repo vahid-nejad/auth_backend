@@ -21,10 +21,35 @@ import { SpecificService } from './specific/specific.service';
 import { VariantController } from './variant/variant.controller';
 import { VariantService } from './variant/variant.service';
 
-@Module({  
-  controllers: [ BaseController, BrandController, CategoryController, ColorController, SpecificController, VariantController],
-  imports: [TypeOrmModule.forFeature([Brand,Color,ProductCategory,ProductColorVariant,ProductSpecific,ProductVariant,ProductVariantPrototype,Specific,SpecificCategory])],
-  providers: [BrandService, CategoryService, ColorService, SpecificService, VariantService],
-  
+@Module({
+  controllers: [
+    BaseController,
+    BrandController,
+    CategoryController,
+    ColorController,
+    SpecificController,
+    VariantController,
+  ],
+  imports: [
+    TypeOrmModule.forFeature([
+      Brand,
+      Color,
+      ProductCategory,
+      ProductColorVariant,
+      ProductSpecific,
+      ProductVariant,
+      ProductVariantPrototype,
+      Specific,
+      SpecificCategory,
+    ]),
+  ],
+  providers: [
+    BrandService,
+    CategoryService,
+    ColorService,
+    SpecificService,
+    VariantService,
+  ],
+  exports: [CategoryService],
 })
 export class BaseModule {}

@@ -6,22 +6,43 @@ import { CreateProductCategoryDto } from '../dto/productCategory.dto';
 
 @Injectable()
 export class CategoryService {
-    constructor(@InjectRepository(ProductCategory) private readonly categoryRepository:Repository<ProductCategory>  ) {}
+  constructor(
+    @InjectRepository(ProductCategory)
+    private readonly categoryRepository: Repository<ProductCategory>,
+  ) {}
 
-    findAll() {
-        return this.categoryRepository.find({
-            relations:['parent']
-        });
-    }
+  findAll() {
+    return this.categoryRepository.find({
+      relations: ['parent'],
+    });
+  }
 
-    async create(createProductCategoryDto:CreateProductCategoryDto){
-        let productCategory=this.categoryRepository.create({ name:createProductCategoryDto.name, parent:{id:createProductCategoryDto.parentId}});
-        productCategory= await this.categoryRepository.save(productCategory); 
-        return await this.categoryRepository.findOne({
-            where:{
-            id:productCategory.id
-        },
-    relations:['parent']}
-         )
-    }
+  async create(createProductCategoryDto: CreateProductCategoryDto) {
+    let productCategory = this.categoryRepository.create({
+      name: createProductCategoryDto.name,
+      parent: { id: createProductCategoryDto.parentId },
+    });
+    productCategory = await this.categoryRepository.save(productCategory);
+    return await this.categoryRepository.findOne({
+      where: {
+        id: productCategory.id,
+      },
+      relations: ['parent'],
+    });
+  }
+
+  async findSubordinates(id: number): Promise<ProductCategory[]> {
+    const categoryQeue = await this.categoryRepository.find({
+      select: ['id'],
+      where: { parent: { id } },
+    });
+    const categorys = await Promise.all(
+      categoryQeue.map(async (category) => {
+        const subordinates = await this.findSubordinates(category.id);
+        categoryQeue.push(...subordinates);
+      }),
+    );
+
+    return categoryQeue;
+  }
 }

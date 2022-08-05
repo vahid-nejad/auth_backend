@@ -35,6 +35,11 @@ export class ProductController {
     return this.productService.findWithDetails(id);
   }
 
+  @Get('category/:id')
+  findByCategory(@Param('id') categoryId: number) {
+    return this.productService.findByCategory(categoryId);
+  }
+
   @Post()
   create(@Body() createProductDto: CreateProductDto) {
     console.log('dto: ', createProductDto);

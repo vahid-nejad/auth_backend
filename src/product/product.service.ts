@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { CategoryService } from './../base/category/category.service';
+import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { retry } from 'rxjs';
 import { CreateProductVariantProtoTypeDto } from 'src/base/dto/productVariantProtoType.dto';
@@ -7,7 +8,7 @@ import { ProductColorVariant } from 'src/entities/productColorVariant.entity';
 import { ProductDescription } from 'src/entities/productDescription.entity';
 import { ProductSpecific } from 'src/entities/productSpecific.entity';
 import { ProductVariant } from 'src/entities/productVariant.entity';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { CreateProductDto } from './dto/product.dto';
 
 @Injectable()
@@ -23,6 +24,7 @@ export class ProductService {
     private readonly productSpecificRepo: Repository<ProductSpecific>,
     @InjectRepository(ProductDescription)
     private readonly productDescriptionRepo: Repository<ProductDescription>,
+    private readonly categoryService: CategoryService,
   ) {}
   async create(createProductDto: CreateProductDto) {
     console.log('dto: ', createProductDto);
@@ -94,6 +96,16 @@ export class ProductService {
         'category.parent',
         'brand',
       ],
+    });
+  }
+
+  async findByCategory(categoryId: number): Promise<Product[]> {
+    const categories = await this.categoryService.findSubordinates(categoryId);
+    const categoryIds: number[] = categories.map((category) => category.id);
+    categoryIds.unshift(categoryId);
+    return await this.productRepo.find({
+      where: { category: { id: In(categoryIds) } },
+      relations: ['colorVariants', 'colorVariants.color'],
     });
   }
 }
