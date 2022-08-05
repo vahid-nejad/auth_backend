@@ -75,7 +75,7 @@ export class ProductService {
 
   async findAll(): Promise<Product[]> {
     return await this.productRepo.find({
-      relations: ['colorVariants'],
+      relations: ['colorVariants', 'colorVariants.color'],
     });
   }
   async findWithDetails(id: number): Promise<Product> {
