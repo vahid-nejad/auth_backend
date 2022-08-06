@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   Res,
   UploadedFile,
   UploadedFiles,
@@ -35,9 +36,15 @@ export class ProductController {
     return this.productService.findWithDetails(id);
   }
 
-  @Get('category/:id')
-  findByCategory(@Param('id') categoryId: number) {
-    return this.productService.findByCategory(categoryId);
+  @Get('search/search')
+  findByCategory(
+    @Query('categoryId') categoryId: number,
+    @Query('brandId') brandId: number,
+    @Query('productName') productName: string,
+  ) {
+    console.log(categoryId, brandId, productName);
+
+    return this.productService.findByCategory(categoryId, brandId, productName);
   }
 
   @Post()

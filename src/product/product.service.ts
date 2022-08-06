@@ -8,7 +8,7 @@ import { ProductColorVariant } from 'src/entities/productColorVariant.entity';
 import { ProductDescription } from 'src/entities/productDescription.entity';
 import { ProductSpecific } from 'src/entities/productSpecific.entity';
 import { ProductVariant } from 'src/entities/productVariant.entity';
-import { In, Repository } from 'typeorm';
+import { FindCondition, In, Like, Repository } from 'typeorm';
 import { CreateProductDto } from './dto/product.dto';
 
 @Injectable()
@@ -99,12 +99,24 @@ export class ProductService {
     });
   }
 
-  async findByCategory(categoryId: number): Promise<Product[]> {
-    const categories = await this.categoryService.findSubordinates(categoryId);
-    const categoryIds: number[] = categories.map((category) => category.id);
-    categoryIds.unshift(categoryId);
+  async findByCategory(
+    categoryId: number,
+    brandId: number,
+    productName: string,
+  ): Promise<Product[]> {
+    const where: FindCondition<Product> = {};
+    if (categoryId) {
+      const categories = await this.categoryService.findSubordinates(
+        categoryId,
+      );
+      const categoryIds: number[] = categories.map((category) => category.id);
+      categoryIds.unshift(categoryId);
+      where.category = { id: In(categoryIds) };
+    }
+    brandId && (where.brand = { id: brandId });
+    productName && (where.name = Like(`%${productName}%`));
     return await this.productRepo.find({
-      where: { category: { id: In(categoryIds) } },
+      where: where,
       relations: ['colorVariants', 'colorVariants.color'],
     });
   }
