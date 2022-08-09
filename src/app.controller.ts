@@ -1,6 +1,5 @@
-import { Controller, Get, Param, Res, Response } from '@nestjs/common';
-import { createReadStream } from 'fs';
-import { join } from 'path';
+import { Controller, Get, Param, Res } from '@nestjs/common';
+
 import { AppService } from './app.service';
 
 @Controller()

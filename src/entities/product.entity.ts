@@ -1,5 +1,5 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { type } from 'os';
+
 import {
   Column,
   Entity,
@@ -7,7 +7,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Answer } from './answer.entity';
+
 import { Brand } from './brand.entity';
 import { Comment } from './comment.entity';
 import { ProductCategory } from './productCategory.entity';

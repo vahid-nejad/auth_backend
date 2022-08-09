@@ -2,7 +2,7 @@ import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { SpecificCategory } from './specificCategory.entity';
 
-@Entity()
+@Entity('specifics')
 @ObjectType()
 export class Specific {
   @PrimaryGeneratedColumn()
