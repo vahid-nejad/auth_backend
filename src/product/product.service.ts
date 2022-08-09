@@ -104,19 +104,19 @@ export class ProductService {
     brandId: number,
     productName: string,
   ): Promise<Product[]> {
-    const where: FindCondition<Product> = {};
+    const whereCluase: FindCondition<Product> = {};
     if (categoryId) {
       const categories = await this.categoryService.findSubordinates(
         categoryId,
       );
       const categoryIds: number[] = categories.map((category) => category.id);
       categoryIds.unshift(categoryId);
-      where.category = { id: In(categoryIds) };
+      whereCluase.category = { id: In(categoryIds) };
     }
-    brandId && (where.brand = { id: brandId });
-    productName && (where.name = Like(`%${productName}%`));
+    brandId && (whereCluase.brand = { id: brandId });
+    productName && (whereCluase.name = Like(`%${productName}%`));
     return await this.productRepo.find({
-      where: where,
+      where: whereCluase,
       relations: ['colorVariants', 'colorVariants.color'],
     });
   }
