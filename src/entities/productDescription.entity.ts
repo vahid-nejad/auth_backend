@@ -14,11 +14,11 @@ export class ProductDescription {
   title?: string;
 
   @Field()
-  @Column()
+  @Column('longtext')
   body?: string;
 
   @Field()
-  @Column()
+  @Column({ nullable: true })
   image?: string;
 
   @Field((type) => Product)

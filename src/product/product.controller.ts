@@ -27,8 +27,8 @@ export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Get()
-  findAll() {
-    return this.productService.findAll();
+  findAll(@Query() { take, skip }) {
+    return this.productService.findAll(take, skip);
   }
 
   @Get('/:id')

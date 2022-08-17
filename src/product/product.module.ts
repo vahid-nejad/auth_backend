@@ -4,7 +4,12 @@ import { CommentResolver } from './comment/comment.resolver';
 import { QuestionResolver } from './question/question.resolver';
 import { AnswerResolver } from './answer/answer.resolver';
 import { Comment } from 'src/entities/comment.entity';
-import { Module } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BaseModule } from 'src/base/base.module';
 import { Answer } from 'src/entities/answer.entity';
@@ -33,6 +38,7 @@ import { QuestionService } from './question/question.service';
 import { AnswerController } from './answer/answer.controller';
 import { AnswerService } from './answer/answer.service';
 import { PointService } from './comment/point/point.service';
+import { PagerMiddleware } from 'src/middlewares/pager.middleware';
 
 @Module({
   imports: [
@@ -77,4 +83,14 @@ import { PointService } from './comment/point/point.service';
     PointService,
   ],
 })
-export class ProductModule {}
+export class ProductModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(PagerMiddleware).forRoutes(
+      { path: 'product', method: RequestMethod.GET },
+      {
+        path: 'product/search/search',
+        method: RequestMethod.GET,
+      },
+    );
+  }
+}

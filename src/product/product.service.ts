@@ -75,10 +75,16 @@ export class ProductService {
     return await this.productRepo.save(product);
   }
 
-  async findAll(): Promise<Product[]> {
-    return await this.productRepo.find({
+  async findAll(
+    take: number,
+    skip: number,
+  ): Promise<{ products: Product[]; total: number }> {
+    const [products, total] = await this.productRepo.findAndCount({
       relations: ['colorVariants', 'colorVariants.color'],
+      take,
+      skip,
     });
+    return { products, total };
   }
   async findWithDetails(id: number): Promise<Product> {
     return await this.productRepo.findOne({
