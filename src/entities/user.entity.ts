@@ -6,6 +6,8 @@ import {
   ManyToOne,
   OneToMany,
   BeforeInsert,
+  PrimaryColumn,
+  Index,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Answer } from './answer.entity';
@@ -16,25 +18,22 @@ import { Question } from './question.entity';
 @Entity()
 @ObjectType()
 export class User {
-  @Field((type) => Int)
-  @PrimaryGeneratedColumn()
-  id: number;
+  @Field((type) => String)
+  @PrimaryColumn()
+  @Index()
+  phone: string;
 
   @Field()
   @Column()
   name: string;
 
   @Field()
-  @Column()
-  email: string;
+  @Column({ nullable: true })
+  email?: string;
 
   @Field()
   @Column()
   password?: string;
-
-  @Field()
-  @Column({ nullable: true })
-  phone?: string;
 
   @Field()
   @Column({ nullable: true })
@@ -48,7 +47,7 @@ export class User {
   zip?: string;
 
   @Field()
-  @Column()
+  @Column({ default: 2 })
   role: UserRole;
   @OneToMany((type) => Comment, (comment) => comment.user)
   comments?: Comment[];
@@ -58,9 +57,8 @@ export class User {
   answers?: Answer[];
 
   @BeforeInsert()
-  async setPassword(password: string) {
-    const salt = await bcrypt.genSalt();
-    this.password = await bcrypt.hash(password || this.password, salt);
+  async hashPassword() {
+    this.password = await bcrypt.hash(this.password, 10);
   }
 }
 export enum UserRole {

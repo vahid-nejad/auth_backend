@@ -8,6 +8,8 @@ import { BaseModule } from './base/base.module';
 import config from '../ormconfig';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -20,6 +22,8 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
       debug: false,
       playground: true,
     }),
+    AuthModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
