@@ -1,12 +1,11 @@
-import { PartialType } from "@nestjs/mapped-types";
-import { IsString } from "class-validator";
+import { PartialType } from '@nestjs/mapped-types';
+import { IsNumber, IsString } from 'class-validator';
 export class CreateBrandDto {
-    @IsString()
-    name:string;
- 
+  @IsString()
+  name: string;
 }
 
-
-export class UpdateBrandDto extends PartialType (CreateBrandDto) {}
-
-
+export class UpdateBrandDto extends CreateBrandDto {
+  @IsNumber()
+  id: number;
+}

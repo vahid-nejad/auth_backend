@@ -1,3 +1,4 @@
+import { UpdateBrandDto } from './../dto/create-base.dto';
 import { LocalAuthGuard } from './../../auth/local-auth.guard';
 import {
   Body,
@@ -6,6 +7,7 @@ import {
   Post,
   UseGuards,
   Request,
+  Put,
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreateBrandDto } from '../dto/create-base.dto';
@@ -28,5 +30,10 @@ export class BrandController {
     const res = await this.brandService.create(createBrandDto);
     console.log(res);
     return res;
+  }
+
+  @Put()
+  async update(@Body() updateBranDto: UpdateBrandDto) {
+    return await this.brandService.update(updateBranDto);
   }
 }
