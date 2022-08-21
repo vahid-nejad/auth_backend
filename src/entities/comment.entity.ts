@@ -4,6 +4,7 @@ import { Product } from './product.entity';
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   OneToOne,
@@ -41,7 +42,7 @@ export class Comment {
   title: string;
 
   @Field()
-  @Column()
+  @Column('longtext')
   body: string;
 
   @Field((type) => Int)
@@ -60,6 +61,7 @@ export class Comment {
 
   @Field((type) => CommentScore)
   @OneToOne((type) => CommentScore, (score) => score.comment, { cascade: true })
+ 
   score: CommentScore;
 }
 // export const enum Recommandation {

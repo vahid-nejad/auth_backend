@@ -41,10 +41,18 @@ export class ProductController {
     @Query('categoryId') categoryId: number,
     @Query('brandId') brandId: number,
     @Query('productName') productName: string,
+    @Query('take') take: number,
+    @Query('skip') skip: number,
   ) {
     console.log(categoryId, brandId, productName);
 
-    return this.productService.findByCategory(categoryId, brandId, productName);
+    return this.productService.search(
+      categoryId,
+      brandId,
+      productName,
+      take,
+      skip,
+    );
   }
 
   @Post()

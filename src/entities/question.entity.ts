@@ -25,7 +25,7 @@ export class Question {
   @Column()
   date: Date;
 
-  @Column()
+  @Column('longtext')
   @Field()
   body: string;
 

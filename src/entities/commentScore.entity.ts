@@ -17,8 +17,8 @@ export class CommentScore {
   id: number;
 
   @Field((type) => Comment)
-  @JoinColumn()
   @OneToOne((type) => Comment, (comment) => comment.score)
+  @JoinColumn()
   comment: Comment;
 
   @Column()

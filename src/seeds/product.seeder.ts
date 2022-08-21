@@ -11,6 +11,7 @@ export default class CreateProduct implements Seeder {
     await connection.query('TRUNCATE TABLE product');
     await connection.query('TRUNCATE TABLE product_specific');
     await connection.query('TRUNCATE TABLE product_color_variant');
+    await connection.query('TRUNCATE TABLE product_description');
     faker.locale = 'fa';
     for (let i = 1; i <= 100; i++) {
       const name = faker.commerce.productName().split(' ');
@@ -22,9 +23,14 @@ export default class CreateProduct implements Seeder {
         {
           brand: { id: 1 },
           cardImage: '921bb62db33fd32bf896ca8f9b9488c7',
-          images: ['30932c486fc344a377c44822453e52e4'],
+          images: [
+            '30932c486fc344a377c44822453e52e4',
+            'ssdas',
+            'sdsda',
+            'sdsdsad',
+          ],
           name: name.join(' '),
-          category: { id: 5 },
+          category: { id: Math.floor(Math.random() * 11) + 1 },
 
           colorVariants: [
             {

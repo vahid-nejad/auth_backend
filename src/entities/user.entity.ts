@@ -25,7 +25,7 @@ export class User {
 
   @Field()
   @Column()
-  name: string;
+  name?: string;
 
   @Field()
   @Column({ nullable: true })
@@ -48,7 +48,7 @@ export class User {
 
   @Field()
   @Column({ default: 2 })
-  role: UserRole;
+  role?: UserRole;
   @OneToMany((type) => Comment, (comment) => comment.user)
   comments?: Comment[];
   @OneToMany((type) => Question, (question) => question.user)

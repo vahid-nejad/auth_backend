@@ -17,13 +17,20 @@ export class CommentResolver {
     private pointService: PointService,
   ) {}
 
+  @Query((returns) => Number)
+  async countComments(
+    @Args('productID', { type: () => Int }) productID: number,
+  ) {
+    return await this.commentService.countByProductID(productID);
+  }
+
   @Query((returns) => [Comment])
   async comments(
     @Args('productID', { type: () => Int }) productID: number,
-    @Args('page', { type: () => Int }) page: number,
-    @Args('limit', { type: () => Int }) limit: number,
+    @Args('take', { type: () => Int }) take: number,
+    @Args('skip', { type: () => Int }) skip: number,
   ) {
-    return await this.commentService.findAllByProductID(productID, page, limit);
+    return await this.commentService.findAllByProductID(productID, take, skip);
   }
 
   @ResolveField()

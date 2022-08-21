@@ -8,22 +8,30 @@ export default class CreateUser implements Seeder {
     await connection.query('SET FOREIGN_KEY_CHECKS=0');
     await connection.query('TRUNCATE TABLE user');
 
-    const users = [];
     faker.locale = 'fa';
     for (let i = 1; i <= 10; i++) {
-      users.push({
-        phone: faker.phone.phoneNumber().replace(/\s/g, ''),
-        name: faker.name.findName(),
+      const user = {
+        phone: faker.phone.number().replace(/\s/g, ''),
+        name: faker.name.fullName(),
         email: faker.internet.email(),
 
         password: faker.internet.password(),
-        role: 1,
-      });
+        role: 2,
+      };
+      await connection.getRepository(User).save(user);
     }
 
-    console.log({ users });
+    const user = {
+      phone: '09396777564',
+      name: 'وحید نژادمحمودی',
+      email: faker.internet.email(),
+      password: '123',
+      role: 1,
+    };
 
-    await connection.getRepository(User).save(users);
+    const newUser = await connection.getRepository(User).create(user);
+    await connection.getRepository(User).save(newUser);
+
     await connection.query('SET FOREIGN_KEY_CHECKS=1');
   }
 }

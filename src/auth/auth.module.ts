@@ -19,7 +19,7 @@ import { jwtConstants } from './constants';
     TypeOrmModule.forFeature([User]),
     PassportModule,
     JwtModule.register({
-      secret: jwtConstants.secret,
+      secret: jwtConstants.secret, // should be put in env
       signOptions: { expiresIn: '2h' },
     }),
   ],

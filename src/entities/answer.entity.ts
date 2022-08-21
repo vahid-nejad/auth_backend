@@ -15,33 +15,33 @@ import { Field, Int, ObjectType } from '@nestjs/graphql';
 export class Answer {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Field((type) => User)
   @ManyToOne((type) => User, (user) => user.answers, {
     nullable: false,
   })
-  user: User;
+  user?: User;
 
   @Field((type) => Question)
   @ManyToOne((type) => Question, (question) => question.answers, {
     nullable: false,
   })
-  question: Question;
+  question?: Question;
 
   @Field()
   @Column()
-  date: Date;
+  date?: Date;
 
   @Field({ nullable: true })
-  @Column()
-  body: string;
+  @Column('longtext')
+  body?: string;
 
   @Field()
   @Column({ default: 0 })
-  likeNum: number;
+  likeNum?: number;
 
   @Field()
   @Column({ default: 0 })
-  dislikeNum: number;
+  dislikeNum?: number;
 }

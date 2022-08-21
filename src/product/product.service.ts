@@ -105,11 +105,13 @@ export class ProductService {
     });
   }
 
-  async findByCategory(
+  async search(
     categoryId: number,
     brandId: number,
     productName: string,
-  ): Promise<Product[]> {
+    take: number,
+    skip: number,
+  ): Promise<{ products: Product[]; total: number }> {
     const whereCluase: FindCondition<Product> = {};
     if (categoryId) {
       const categories = await this.categoryService.findSubordinates(
@@ -121,9 +123,12 @@ export class ProductService {
     }
     brandId && (whereCluase.brand = { id: brandId });
     productName && (whereCluase.name = Like(`%${productName}%`));
-    return await this.productRepo.find({
+    const [products, total] = await this.productRepo.findAndCount({
       where: whereCluase,
       relations: ['colorVariants', 'colorVariants.color'],
+      take,
+      skip,
     });
+    return { products, total };
   }
 }

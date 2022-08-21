@@ -11,6 +11,10 @@ export class QuestionService {
     private readonly questionRepo: Repository<Question>,
   ) {}
 
+  async countByProductID(productID: number) {
+    return await this.questionRepo.count({ product: { id: productID } });
+  }
+
   async create(createQuestionDto: CreateQuestionDto) {
     const question = this.questionRepo.create(createQuestionDto);
     question.date = new Date();
@@ -20,14 +24,14 @@ export class QuestionService {
   }
   async findAllByProductID(
     productid: number,
-    page: number,
-    limit: number,
+    take: number,
+    skip: number,
   ): Promise<Question[]> {
     return await this.questionRepo.find({
       where: { product: { id: productid } },
       relations: ['user'],
-      skip: page * limit,
-      take: limit,
+      take,
+      skip,
     });
   }
 }

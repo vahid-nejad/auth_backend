@@ -18,4 +18,9 @@ export class CommentController {
   create(@Body() createCommentDto: CreateCommentDto) {
     return this.commentService.create(createCommentDto);
   }
+
+  @Get('meanScoreOfProduct/:id')
+  async meanScoreOfProduct(@Param('id') productid: number) {
+    return await this.commentService.meanScoreOfProduct(productid);
+  }
 }

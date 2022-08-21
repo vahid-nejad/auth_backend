@@ -16,17 +16,20 @@ export class QuestionResolver {
     private readonly answerService: AnswerService,
   ) {}
 
+  @Query((returns) => Number)
+  async countQuestions(
+    @Args('productID', { type: () => Int }) productID: number,
+  ) {
+    return await this.questionService.countByProductID(productID);
+  }
+
   @Query((returns) => [Question])
   async questions(
     @Args('productID', { type: () => Int }) productID: number,
-    @Args('page', { type: () => Int }) page: number,
-    @Args('limit', { type: () => Int }) limit: number,
+    @Args('take', { type: () => Int }) take: number,
+    @Args('skip', { type: () => Int }) skip: number,
   ) {
-    return await this.questionService.findAllByProductID(
-      productID,
-      page,
-      limit,
-    );
+    return await this.questionService.findAllByProductID(productID, take, skip);
   }
 
   @ResolveField()

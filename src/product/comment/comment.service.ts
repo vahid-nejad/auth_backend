@@ -13,16 +13,43 @@ export class CommentService {
     @InjectRepository(CommentScore)
     private readonly commentScoreRepo: Repository<CommentScore>,
   ) {}
+  async countByProductID(productID: number) {
+    return await this.commentRepo.count({ product: { id: productID } });
+  }
+
+  async meanScoreOfProduct(productId: number) {
+    const socres = await this.commentScoreRepo
+      .createQueryBuilder()
+      .innerJoin('comment', 'comment')
+      .where('comment.productId = :productId', { productId })
+      .groupBy('comment.productId')
+      .select('AVG(valueByPrice)', 'valueByPrice')
+      .addSelect('AVG(design)', 'design')
+      .addSelect('AVG(physicalBeauty)', 'physicalBeauty')
+      .addSelect('AVG(performance)', 'performance')
+      .getRawOne();
+
+    const count = await this.commentScoreRepo.count({
+      where: { comment: { product: { id: productId } } },
+      relations: ['comment'],
+    });
+
+    return {
+      ...socres,
+      count,
+    };
+  }
+
   async findAllByProductID(
     productid: number,
-    page: number,
-    limit: number,
+    take: number,
+    skip: number,
   ): Promise<Comment[]> {
     return await this.commentRepo.find({
       where: { product: { id: productid } },
-      relations: ['user'],
-      skip: page * limit,
-      take: limit,
+      relations: ['user', 'score'],
+      take,
+      skip,
     });
   }
   async create(createCommentDto: CreateCommentDto): Promise<Comment> {

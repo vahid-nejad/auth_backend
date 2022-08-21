@@ -1,3 +1,4 @@
+import { LocalAuthGuard } from './../../auth/local-auth.guard';
 import {
   Body,
   Controller,
@@ -14,7 +15,7 @@ import { BrandService } from './brand.service';
 export class BrandController {
   constructor(public readonly brandService: BrandService) {}
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get()
   findAll(@Request() req: any) {
     console.log(req.user);
