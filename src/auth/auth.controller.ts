@@ -26,10 +26,8 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Request() req, @Response() res) {
-    console.log(req.user);
-
     const token = await this.authService.login(req.user);
-    res.cookie('token', token.access_token, { httpOnly: true });
+    // res.cookie('token', token.accessToken, { httpOnly: true });
     return res.send(token);
   }
 }
