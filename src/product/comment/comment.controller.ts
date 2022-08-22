@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreateCommentDto } from '../dto/comment.dto';
 import { CommentService } from './comment.service';
 
@@ -14,6 +23,7 @@ export class CommentController {
     return this.commentService.findAllByProductID(productid, page, limit);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() createCommentDto: CreateCommentDto) {
     return this.commentService.create(createCommentDto);
