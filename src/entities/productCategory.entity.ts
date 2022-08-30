@@ -21,10 +21,10 @@ export class ProductCategory {
 
   @Field((type) => [ProductCategory])
   @OneToMany((type) => ProductCategory, (category) => category.parent)
-  childeren?: ProductCategory[];
+  children?: ProductCategory[];
 
   @Field((type) => ProductCategory)
-  @ManyToOne((type) => ProductCategory, (category) => category.childeren)
+  @ManyToOne((type) => ProductCategory, (category) => category.children)
   parent?: ProductCategory;
 
   @Field((type) => [Product])

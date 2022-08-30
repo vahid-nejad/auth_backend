@@ -18,9 +18,12 @@ import { Question } from './question.entity';
 @Entity()
 @ObjectType()
 export class User {
+  @Field((type) => Int)
+  @PrimaryGeneratedColumn()
+  id: number;
+
   @Field((type) => String)
-  @PrimaryColumn()
-  @Index()
+  @Column({ unique: true })
   phone: string;
 
   @Field()

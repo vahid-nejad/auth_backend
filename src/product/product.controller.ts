@@ -82,9 +82,9 @@ export class ProductController {
   ) {
     console.log(files);
     return {
-      cardImage: files.cardImage[0].filename,
-      images: files.images.map((image) => image.filename),
-      descriptionImages: files.descriptionImages.map((image) => {
+      cardImage: files.cardImage[0]?.filename,
+      images: files.images?.map((image) => image.filename),
+      descriptionImages: files.descriptionImages?.map((image) => {
         return { fileName: image.filename, index: image.originalname };
       }),
     };

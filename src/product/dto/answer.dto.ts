@@ -7,7 +7,7 @@ export class CreateAnswerDto {
   };
   @IsObject()
   user: {
-    phone: string;
+    id: number;
   };
 
   @IsString()

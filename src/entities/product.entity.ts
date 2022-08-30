@@ -14,7 +14,7 @@ import { ProductCategory } from './productCategory.entity';
 import { ProductColorVariant } from './productColorVariant.entity';
 import { ProductDescription } from './productDescription.entity';
 import { ProductSpecific } from './productSpecific.entity';
-import { ProductVariant } from './productVariant.entity';
+import { AddOn } from './addOn.entity';
 import { Question } from './question.entity';
 
 @Entity()
@@ -46,15 +46,11 @@ export class Product {
   )
   colorVariants?: ProductColorVariant[];
 
-  @Field((type) => [ProductVariant], { nullable: true })
-  @OneToMany(
-    (type) => ProductVariant,
-    (productVariant) => productVariant.product,
-    {
-      cascade: true,
-    },
-  )
-  variants?: ProductVariant[];
+  @Field((type) => [AddOn], { nullable: true })
+  @OneToMany((type) => AddOn, (productVariant) => productVariant.product, {
+    cascade: true,
+  })
+  addOns?: AddOn[];
 
   @Field((type) => [ProductSpecific], { nullable: true })
   @OneToMany(

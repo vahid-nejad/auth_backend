@@ -1,3 +1,5 @@
+import { OrderedProduct } from './src/entities/orderedProduct.entity';
+import { Order } from './src/entities/order.entity';
 import { CommentScore } from './src/entities/commentScore.entity';
 import { City } from './src/entities/city.entity';
 import { Province } from './src/entities/province.entity';
@@ -14,8 +16,8 @@ import { ProductCategory } from './src/entities/productCategory.entity';
 import { ProductColorVariant } from './src/entities/productColorVariant.entity';
 import { ProductDescription } from './src/entities/productDescription.entity';
 import { ProductSpecific } from './src/entities/productSpecific.entity';
-import { ProductVariant } from './src/entities/productVariant.entity';
-import { ProductVariantPrototype } from './src/entities/productVariantPrototype.entity';
+import { AddOn } from './src/entities/addOn.entity';
+import { AddOnPrototype } from './src/entities/addOnPrototype.entity';
 import { Specific } from './src/entities/specific.entity';
 import { SpecificCategory } from './src/entities/specificCategory.entity';
 import { CommentPoint } from './src/entities/commentPoint.entity';
@@ -37,8 +39,8 @@ const config: MysqlConnectionOptions & {
     ProductCategory,
     ProductColorVariant,
     ProductSpecific,
-    ProductVariant,
-    ProductVariantPrototype,
+    AddOn,
+    AddOnPrototype,
     Specific,
     SpecificCategory,
     ProductDescription,
@@ -50,6 +52,8 @@ const config: MysqlConnectionOptions & {
     City,
     CommentPoint,
     CommentScore,
+    Order,
+    OrderedProduct,
   ],
 
   seeds: ['./src/seeds/**/*{.ts,.js}'],

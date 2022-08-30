@@ -7,7 +7,7 @@ import { Product } from 'src/entities/product.entity';
 import { ProductColorVariant } from 'src/entities/productColorVariant.entity';
 import { ProductDescription } from 'src/entities/productDescription.entity';
 import { ProductSpecific } from 'src/entities/productSpecific.entity';
-import { ProductVariant } from 'src/entities/productVariant.entity';
+import { AddOn } from 'src/entities/addOn.entity';
 import { FindCondition, In, Like, Repository } from 'typeorm';
 import { CreateProductDto } from './dto/product.dto';
 
@@ -18,8 +18,8 @@ export class ProductService {
     private readonly productRepo: Repository<Product>,
     @InjectRepository(ProductColorVariant)
     private readonly productColorVariantRepo: Repository<ProductColorVariant>,
-    @InjectRepository(ProductVariant)
-    private readonly productVariantRepo: Repository<ProductVariant>,
+    @InjectRepository(AddOn)
+    private readonly productVariantRepo: Repository<AddOn>,
     @InjectRepository(ProductSpecific)
     private readonly productSpecificRepo: Repository<ProductSpecific>,
     @InjectRepository(ProductDescription)
@@ -43,10 +43,10 @@ export class ProductService {
       ),
     );
 
-    product.variants = await Promise.all(
+    product.addOns = await Promise.all(
       createProductDto.productVariants.map((variant) =>
         this.productVariantRepo.create({
-          varinat: { id: variant.variantId },
+          addOn: { id: variant.variantId },
           pricingProtocol: variant.pricingProtocl,
           pricingValue: variant.pricingValue,
         }),
@@ -96,8 +96,8 @@ export class ProductService {
         'specifics.specific',
         'specifics.specific.category',
         'descriptions',
-        'variants',
-        'variants.varinat',
+        'addOns',
+        'addOns.addOn',
         'category',
         'category.parent',
         'brand',

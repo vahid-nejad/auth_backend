@@ -53,6 +53,8 @@ export class CommentService {
     });
   }
   async create(createCommentDto: CreateCommentDto): Promise<Comment> {
+    console.log({ createCommentDto });
+
     const comment = this.commentRepo.create(createCommentDto);
     comment.date = new Date();
 

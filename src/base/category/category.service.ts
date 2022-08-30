@@ -11,6 +11,25 @@ export class CategoryService {
     private readonly categoryRepository: Repository<ProductCategory>,
   ) {}
 
+  async findRootCategories() {
+    const rootCategories = await this.findChildren(1);
+
+    for (const cate of rootCategories) {
+      cate.children = await this.findChildren(cate.id);
+      for (const child of cate.children) {
+        child.children = await this.findChildren(child.id);
+      }
+    }
+
+    return rootCategories;
+  }
+
+  async findChildren(parntId: number) {
+    return await this.categoryRepository.find({
+      where: { parent: { id: parntId } },
+    });
+  }
+
   findAll() {
     return this.categoryRepository.find({
       relations: ['parent'],

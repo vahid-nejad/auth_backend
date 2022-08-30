@@ -1,17 +1,17 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Product } from './product.entity';
-import { ProductVariantPrototype } from './productVariantPrototype.entity';
+import { AddOnPrototype } from './addOnPrototype.entity';
 @Entity()
 @ObjectType()
-export class ProductVariant {
+export class AddOn {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()
   id: Number;
 
-  @Field((type) => ProductVariantPrototype)
-  @ManyToOne((type) => ProductVariantPrototype, (variant) => variant.id)
-  varinat: ProductVariantPrototype;
+  @Field((type) => AddOnPrototype)
+  @ManyToOne((type) => AddOnPrototype, (variant) => variant.id)
+  addOn: AddOnPrototype;
 
   @Field((type) => Int)
   @Column()
@@ -22,7 +22,7 @@ export class ProductVariant {
   pricingValue: number;
 
   @Field((type) => Product)
-  @ManyToOne((type) => Product, (product) => product.variants)
+  @ManyToOne((type) => Product, (product) => product.addOns)
   product: Product;
 }
 export enum VariantPricingProtocol {

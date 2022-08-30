@@ -19,4 +19,9 @@ export class CategoryController {
   findOne(@Param('id') id: number) {
     return this.categoryService.findSubordinates(id);
   }
+
+  @Get('/roots/all')
+  findRootCategories() {
+    return this.categoryService.findRootCategories();
+  }
 }

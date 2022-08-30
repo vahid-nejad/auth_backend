@@ -17,7 +17,7 @@ export default class QuestionSeeder implements Seeder {
     for (let i = 1; i <= 30; i++) {
       const questions: CreateQuestionDto = {
         user: {
-          phone: '09396777564',
+          id: Math.floor(Math.random() * 10) + 1,
         },
         product: {
           id: 1,
@@ -37,7 +37,7 @@ export default class QuestionSeeder implements Seeder {
       for (let j = 1; j <= 3; j++) {
         const answer: CreateAnswerDto = {
           user: {
-            phone: '09396777564',
+            id: Math.random() * 9 + 1,
           },
 
           question: {

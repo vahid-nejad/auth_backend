@@ -3,7 +3,7 @@ import { IsNumber, IsObject, IsString } from 'class-validator';
 export class CreateCommentDto {
   @IsObject()
   user: {
-    phone: string;
+    id: number;
   };
   @IsObject()
   product: {
