@@ -44,8 +44,6 @@ export class ProductController {
     @Query('take') take: number,
     @Query('skip') skip: number,
   ) {
-    console.log(categoryId, brandId, productName);
-
     return this.productService.search(
       categoryId,
       brandId,

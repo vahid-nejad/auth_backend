@@ -1,3 +1,4 @@
+import { OrderedProduct } from './orderedProduct.entity';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 
 import {

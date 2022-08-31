@@ -10,7 +10,7 @@ export class CreateOrderDto {
   };
 
   @IsObject({ each: true })
-  oderedProducts: OrderedProductDto[];
+  orderedProducts: OrderedProductDto[];
 
   @IsNumber()
   status: OrderStatus;

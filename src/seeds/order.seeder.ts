@@ -14,7 +14,7 @@ export default class orderSeeder implements Seeder {
         buyer: {
           id: 11,
         },
-        oderedProducts: [
+        orderedProducts: [
           {
             product: {
               id: Math.floor(Math.random() * 100) + 1,
@@ -22,7 +22,19 @@ export default class orderSeeder implements Seeder {
             color: {
               code: '#ffffff',
             },
-            price: Math.floor(Math.random() * 10000000000) + 1,
+            price: Math.round(Math.random() * 1000) * 1000,
+            discount: Math.floor(Math.random() * 1000) + 1,
+            qty: Math.floor(Math.random() * 9) + 1,
+            selectedAddOns: [],
+          },
+          {
+            product: {
+              id: Math.floor(Math.random() * 100) + 1,
+            },
+            color: {
+              code: '#ffffff',
+            },
+            price: Math.round(Math.random() * 1000) * 1000,
             discount: Math.floor(Math.random() * 100000) + 1,
             qty: Math.floor(Math.random() * 9) + 1,
             selectedAddOns: [],
@@ -34,7 +46,7 @@ export default class orderSeeder implements Seeder {
             color: {
               code: '#ffffff',
             },
-            price: Math.floor(Math.random() * 10000000000) + 1,
+            price: Math.round(Math.random() * 1000) * 1000,
             discount: Math.floor(Math.random() * 100000) + 1,
             qty: Math.floor(Math.random() * 9) + 1,
             selectedAddOns: [],
@@ -46,7 +58,7 @@ export default class orderSeeder implements Seeder {
             color: {
               code: '#ffffff',
             },
-            price: Math.floor(Math.random() * 10000000000) + 1,
+            price: Math.round(Math.random() * 1000) * 1000,
             discount: Math.floor(Math.random() * 100000) + 1,
             qty: Math.floor(Math.random() * 9) + 1,
             selectedAddOns: [],
@@ -58,7 +70,7 @@ export default class orderSeeder implements Seeder {
             color: {
               code: '#ffffff',
             },
-            price: Math.floor(Math.random() * 10000000000) + 1,
+            price: Math.round(Math.random() * 1000) * 1000,
             discount: Math.floor(Math.random() * 100000) + 1,
             qty: Math.floor(Math.random() * 9) + 1,
             selectedAddOns: [],
@@ -70,7 +82,7 @@ export default class orderSeeder implements Seeder {
             color: {
               code: '#ffffff',
             },
-            price: Math.floor(Math.random() * 10000000000) + 1,
+            price: Math.round(Math.random() * 1000) * 1000,
             discount: Math.floor(Math.random() * 100000) + 1,
             qty: Math.floor(Math.random() * 9) + 1,
             selectedAddOns: [],
@@ -82,7 +94,7 @@ export default class orderSeeder implements Seeder {
             color: {
               code: '#ffffff',
             },
-            price: Math.floor(Math.random() * 10000000000) + 1,
+            price: Math.round(Math.random() * 1000) * 1000,
             discount: Math.floor(Math.random() * 100000) + 1,
             qty: Math.floor(Math.random() * 9) + 1,
             selectedAddOns: [],
@@ -94,7 +106,7 @@ export default class orderSeeder implements Seeder {
             color: {
               code: '#ffffff',
             },
-            price: Math.floor(Math.random() * 10000000000) + 1,
+            price: Math.round(Math.random() * 1000) * 1000,
             discount: Math.floor(Math.random() * 100000) + 1,
             qty: Math.floor(Math.random() * 9) + 1,
             selectedAddOns: [],
@@ -106,28 +118,18 @@ export default class orderSeeder implements Seeder {
             color: {
               code: '#ffffff',
             },
-            price: Math.floor(Math.random() * 10000000000) + 1,
-            discount: Math.floor(Math.random() * 100000) + 1,
-            qty: Math.floor(Math.random() * 9) + 1,
-            selectedAddOns: [],
-          },
-          {
-            product: {
-              id: Math.floor(Math.random() * 100) + 1,
-            },
-            color: {
-              code: '#ffffff',
-            },
-            price: Math.floor(Math.random() * 10000000000) + 1,
+            price: Math.round(Math.random() * 1000) * 1000,
             discount: Math.floor(Math.random() * 100000) + 1,
             qty: Math.floor(Math.random() * 9) + 1,
             selectedAddOns: [],
           },
         ],
-        status: Math.floor(Math.random() * 3) + 1,
+        status: Math.round(Math.random() * 3),
       };
 
-      await connection.getRepository(Order).save(order);
+      const tempOrder = await connection.getRepository(Order).create(order);
+
+      await connection.getRepository(Order).save(tempOrder);
     }
 
     await connection.query('SET FOREIGN_KEY_CHECKS=1');

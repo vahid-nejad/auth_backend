@@ -14,11 +14,7 @@ export default class CreateProduct implements Seeder {
     await connection.query('TRUNCATE TABLE product_description');
     faker.locale = 'fa';
     for (let i = 1; i <= 100; i++) {
-      const name = faker.commerce.productName().split(' ');
-
-      const temp = name[name.length - 1];
-      name[name.length - 1] = name[0];
-      name[0] = temp;
+      const name = faker.commerce.productName();
       await connection.getRepository(Product).save([
         {
           brand: { id: 1 },
@@ -29,7 +25,7 @@ export default class CreateProduct implements Seeder {
             'sdsda',
             'sdsdsad',
           ],
-          name: name.join(' '),
+          name: name,
           category: { id: Math.floor(Math.random() * 11) + 1 },
 
           colorVariants: [
