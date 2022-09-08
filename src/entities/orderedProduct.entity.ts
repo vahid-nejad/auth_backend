@@ -41,7 +41,7 @@ export class OrderedProduct {
 
   @Field()
   @Column({ nullable: true })
-  dicount?: number;
+  discount?: number;
 
   @Field()
   @Column()

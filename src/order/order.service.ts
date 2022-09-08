@@ -9,6 +9,15 @@ export class OrderService {
     @InjectRepository(Order) private readonly orderRepo: Repository<Order>,
   ) {}
 
+  async find(orderId: number) {
+    return await this.orderRepo.findOne({
+      where: {
+        id: orderId,
+      },
+      relations: ['orderedProducts', 'orderedProducts.product', 'buyer'],
+    });
+  }
+
   async getUserOrders(
     userId: number,
     status: number,

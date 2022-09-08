@@ -38,4 +38,13 @@ export class CommentResolver {
     const { id } = comment;
     return this.pointService.findAllByCommentID(id);
   }
+
+  @Query((returns) => [Comment])
+  async userComments(
+    @Args('userId', { type: () => Int }) userId: number,
+    @Args('take', { type: () => Int }) take: number,
+    @Args('skip', { type: () => Int }) skip: number,
+  ) {
+    return await this.commentService.findUserComments(userId, take, skip);
+  }
 }

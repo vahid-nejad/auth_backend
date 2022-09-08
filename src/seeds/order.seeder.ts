@@ -95,8 +95,8 @@ export default class orderSeeder implements Seeder {
               code: '#ffffff',
             },
             price: Math.round(Math.random() * 1000) * 1000,
-            discount: Math.floor(Math.random() * 100000) + 1,
-            qty: Math.floor(Math.random() * 9) + 1,
+            discount: Math.round(Math.random() * 100000),
+            qty: Math.round(Math.random() * 9),
             selectedAddOns: [],
           },
           {

@@ -17,6 +17,19 @@ export class CommentService {
     return await this.commentRepo.count({ product: { id: productID } });
   }
 
+  async findUserComments(userId: number, take: number, skip: number) {
+    const [comments, count] = await this.commentRepo.findAndCount({
+      where: {
+        user: { id: userId },
+      },
+      relations: ['score'],
+      take,
+      skip,
+    });
+
+    return { comments, count };
+  }
+
   async meanScoreOfProduct(productId: number) {
     const socres = await this.commentScoreRepo
       .createQueryBuilder()

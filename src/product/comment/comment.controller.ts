@@ -33,4 +33,13 @@ export class CommentController {
   async meanScoreOfProduct(@Param('id') productid: number) {
     return await this.commentService.meanScoreOfProduct(productid);
   }
+
+  @Get('user/:id')
+  async findUserComments(
+    @Param('id') userId: number,
+    @Query('take') take: number,
+    @Query('skip') skip: number,
+  ) {
+    return await this.commentService.findUserComments(userId, take, skip);
+  }
 }

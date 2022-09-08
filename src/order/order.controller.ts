@@ -5,6 +5,11 @@ import { Controller, Get, Param, Query } from '@nestjs/common';
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
+  @Get(':id')
+  async getOrder(@Param('id') orderId: number) {
+    return await this.orderService.find(orderId);
+  }
+
   @Get('/user/:id')
   async getUserOrders(
     @Param('id') userId,

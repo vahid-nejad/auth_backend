@@ -17,6 +17,7 @@ export default class CreateUser implements Seeder {
 
         password: faker.internet.password(),
         role: 2,
+        address: faker.address.streetAddress(),
       };
       await connection.getRepository(User).save(user);
     }
@@ -27,6 +28,7 @@ export default class CreateUser implements Seeder {
       email: faker.internet.email(),
       password: '123',
       role: 1,
+      address: faker.address.streetAddress(),
     };
 
     const newUser = await connection.getRepository(User).create(user);

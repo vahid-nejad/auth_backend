@@ -91,6 +91,7 @@ export class ProductModule implements NestModule {
         path: 'product/search/search',
         method: RequestMethod.GET,
       },
+      { path: 'comment/user/:id', method: RequestMethod.GET },
     );
   }
 }
