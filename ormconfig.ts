@@ -1,3 +1,4 @@
+import { DeliveryMethod } from './src/entities/delivery.entity';
 import { OrderedProduct } from './src/entities/orderedProduct.entity';
 import { Order } from './src/entities/order.entity';
 import { CommentScore } from './src/entities/commentScore.entity';
@@ -54,6 +55,7 @@ const config: MysqlConnectionOptions & {
     CommentScore,
     Order,
     OrderedProduct,
+    DeliveryMethod,
   ],
 
   seeds: ['./src/seeds/**/*{.ts,.js}'],

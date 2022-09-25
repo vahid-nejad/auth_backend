@@ -1,3 +1,4 @@
+import { DeliveryMethod } from './../entities/delivery.entity';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Brand } from 'src/entities/brand.entity';
@@ -20,6 +21,8 @@ import { SpecificController } from './specific/specific.controller';
 import { SpecificService } from './specific/specific.service';
 import { VariantController } from './variant/variant.controller';
 import { VariantService } from './variant/variant.service';
+import { DeliveryMethodController } from './delivery-method/delivery-method.controller';
+import { DeliveryMethodService } from './delivery-method/delivery-method.service';
 
 @Module({
   controllers: [
@@ -29,6 +32,7 @@ import { VariantService } from './variant/variant.service';
     ColorController,
     SpecificController,
     VariantController,
+    DeliveryMethodController,
   ],
   imports: [
     TypeOrmModule.forFeature([
@@ -41,6 +45,7 @@ import { VariantService } from './variant/variant.service';
       AddOnPrototype,
       Specific,
       SpecificCategory,
+      DeliveryMethod,
     ]),
   ],
   providers: [
@@ -49,6 +54,7 @@ import { VariantService } from './variant/variant.service';
     ColorService,
     SpecificService,
     VariantService,
+    DeliveryMethodService,
   ],
   exports: [CategoryService],
 })
