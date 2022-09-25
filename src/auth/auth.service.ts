@@ -25,11 +25,7 @@ export class AuthService {
       sub: { name: user.name, email: user.email, role: user.role },
     };
     return {
-      id: user.id,
-      name: user.name,
-      phone: user.phone,
-      role: user.role,
-
+      ...user,
       accessToken: this.jwtService.sign(payload),
     };
   }

@@ -11,7 +11,10 @@ export class UsersService {
   ) {}
 
   async findOne(phone: string): Promise<User | undefined> {
-    return await this.usersRepository.findOne({ phone });
+    return await this.usersRepository.findOne({
+      where: { phone: phone },
+      relations: ['city', 'city.province'],
+    });
   }
 
   async create(userDto: CreateUserDto) {
