@@ -6,8 +6,6 @@ import {
   ManyToOne,
   OneToMany,
   BeforeInsert,
-  PrimaryColumn,
-  Index,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Answer } from './answer.entity';
@@ -35,10 +33,6 @@ export class User {
   email?: string;
 
   @Field()
-  @Column()
-  password?: string;
-
-  @Field()
   @Column({ nullable: true })
   address?: string;
 
@@ -48,6 +42,10 @@ export class User {
   @Field()
   @Column({ nullable: true })
   zip?: string;
+
+  @Field()
+  @Column()
+  password?: string;
 
   @Field()
   @Column({ default: 2 })

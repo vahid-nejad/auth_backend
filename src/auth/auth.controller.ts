@@ -1,6 +1,6 @@
 import { LocalAuthGuard } from './local-auth.guard';
 import { AuthService } from './auth.service';
-import { UsersService } from 'src/users/users.service';
+import { UsersService } from 'src/user/user.service';
 import { CreateUserDto } from 'src/base/dto/user.dto';
 import {
   Body,

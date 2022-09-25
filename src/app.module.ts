@@ -9,7 +9,7 @@ import config from '../ormconfig';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
+import { UsersModule } from './user/user.module';
 import { OrderModule } from './order/order.module';
 
 @Module({
