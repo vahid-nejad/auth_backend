@@ -1,61 +1,50 @@
-import { DeliveryMethod } from './../entities/delivery.entity';
+import { MedicalCenter } from './../entities/medicalCenter.entity';
+import { Person } from './../entities/person.entity';
+import { PractitionerExpertise } from './../entities/practitionerExpertise.entity';
+import { DocRecievementType } from './../entities/docRecievementType.entity';
+import { DiseaseCostType } from './../entities/diseaseCostType.entity';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Brand } from 'src/entities/brand.entity';
-import { Color } from 'src/entities/color.entity';
-import { ProductCategory } from 'src/entities/productCategory.entity';
-import { ProductColorVariant } from 'src/entities/productColorVariant.entity';
-import { ProductSpecific } from 'src/entities/productSpecific.entity';
-import { AddOn } from 'src/entities/addOn.entity';
-import { AddOnPrototype } from 'src/entities/addOnPrototype.entity';
-import { Specific } from 'src/entities/specific.entity';
-import { SpecificCategory } from 'src/entities/specificCategory.entity';
-import { BaseController } from './base.controller';
-import { BrandController } from './brand/brand.controller';
-import { BrandService } from './brand/brand.service';
-import { CategoryController } from './category/category.controller';
-import { CategoryService } from './category/category.service';
-import { ColorController } from './color/color.controller';
-import { ColorService } from './color/color.service';
-import { SpecificController } from './specific/specific.controller';
-import { SpecificService } from './specific/specific.service';
-import { VariantController } from './variant/variant.controller';
-import { VariantService } from './variant/variant.service';
-import { DeliveryMethodController } from './delivery-method/delivery-method.controller';
-import { DeliveryMethodService } from './delivery-method/delivery-method.service';
+import { ToothNum } from 'src/entities/toothNum.entity';
+import { ToothController } from './tooth/tooth.controller';
+import { ToothService } from './tooth/tooth.service';
+import { DiseaseCostTypeController } from './disease-cost-type/disease-cost-type.controller';
+import { DiseaseCostTypeService } from './disease-cost-type/disease-cost-type.service';
+import { DocRecievementTypeService } from './doc-recievement-type/doc-recievement-type.service';
+import { DocRecievementTypeController } from './doc-recievement-type/doc-recievement-type.controller';
+import { PractitionerExpertiseController } from './practitioner-expertise/practitioner-expertise.controller';
+import { PractitionerExpertiseService } from './practitioner-expertise/practitioner-expertise.service';
+import { PersonController } from './person/person.controller';
+import { PersonService } from './person/person.service';
+import { MedicalCenterController } from './medical-center/medical-center.controller';
+import { MedicalCenterService } from './medical-center/medical-center.service';
 
 @Module({
   controllers: [
-    BaseController,
-    BrandController,
-    CategoryController,
-    ColorController,
-    SpecificController,
-    VariantController,
-    DeliveryMethodController,
+    ToothController,
+    DiseaseCostTypeController,
+    DocRecievementTypeController,
+    PractitionerExpertiseController,
+    MedicalCenterController,
+    PersonController,
   ],
   imports: [
     TypeOrmModule.forFeature([
-      Brand,
-      Color,
-      ProductCategory,
-      ProductColorVariant,
-      ProductSpecific,
-      AddOn,
-      AddOnPrototype,
-      Specific,
-      SpecificCategory,
-      DeliveryMethod,
+      ToothNum,
+      DiseaseCostType,
+      DocRecievementType,
+      PractitionerExpertise,
+      MedicalCenter,
+      Person,
     ]),
   ],
   providers: [
-    BrandService,
-    CategoryService,
-    ColorService,
-    SpecificService,
-    VariantService,
-    DeliveryMethodService,
+    ToothService,
+    DiseaseCostTypeService,
+    DocRecievementTypeService,
+    PractitionerExpertiseService,
+    MedicalCenterService,
+    PersonService,
   ],
-  exports: [CategoryService],
 })
 export class BaseModule {}
