@@ -1,6 +1,9 @@
+import { ParaClinicDamage } from './src/entities/paraClinicDamage.entity';
+import { InsuranceCompany } from './src/entities/insuranceCompany.entity';
+import { TariffType } from './src/entities/tariffType.entity';
 import { MedicalCenter } from './src/entities/medicalCenter.entity';
 import { Person } from './src/entities/person.entity';
-import { PractitionerExpertise } from './src/entities/practitionerExpertise.entity';
+import { PhysicianExpertise } from './src/entities/physicianExpertise.entity';
 import { DocRecievementType } from './src/entities/docRecievementType.entity';
 import { DiseaseCostType } from './src/entities/diseaseCostType.entity';
 import { Province } from './src/entities/province.entity';
@@ -26,9 +29,12 @@ const config: MysqlConnectionOptions & {
     Province,
     DiseaseCostType,
     DocRecievementType,
-    PractitionerExpertise,
+    PhysicianExpertise,
     MedicalCenter,
+    TariffType,
+    InsuranceCompany,
     Person,
+    ParaClinicDamage,
   ],
 
   seeds: ['./src/seeds/**/*{.ts,.js}'],

@@ -10,8 +10,10 @@ import {
   Put,
   Query,
   Res,
+  UseInterceptors,
 } from '@nestjs/common';
 import { CreatePersonDto } from '../dto/person.dto';
+import { LoggingInterceptor } from 'src/interceptors/logging.interceptor';
 
 @Controller('base/person')
 export class PersonController {
@@ -20,6 +22,7 @@ export class PersonController {
   async findOne(@Param('id') id: string) {
     return await this.personService.findById(id);
   }
+  @UseInterceptors(LoggingInterceptor)
   @Get()
   async findByName(@Query('name') name: string) {
     return await this.personService.findByName(name);

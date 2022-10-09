@@ -11,8 +11,6 @@ export class PersonService {
   ) {}
 
   async findByName(name: string) {
-    console.log({ name });
-
     const persons = await this.personRepo.find({
       where: {
         name: Like(`%${name}%`),

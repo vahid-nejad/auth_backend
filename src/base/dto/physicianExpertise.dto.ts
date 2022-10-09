@@ -1,10 +1,10 @@
 import { IsNumber, IsString } from 'class-validator';
 
-export class CreatePractitionerExpertiseDto {
+export class CreatePhysicianExpertiseDto {
   @IsString()
   name: string;
 }
-export class UpdatePractitionerExpertiseDto {
+export class UpdatePhysicianExpertiseDto {
   @IsNumber()
   id: number;
   @IsString()
