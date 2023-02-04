@@ -6,6 +6,7 @@ import {
   ManyToOne,
   OneToMany,
   BeforeInsert,
+  PrimaryColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 
@@ -13,13 +14,15 @@ import { City } from './city.entity';
 @Entity()
 @ObjectType()
 export class User {
-  @Field((type) => Int)
   @PrimaryGeneratedColumn()
   id: number;
-
   @Field((type) => String)
   @Column({ unique: true })
-  phone: string;
+  userName?: string;
+
+  @Field((type) => String)
+  @Column({ nullable: true })
+  phone?: string;
 
   @Field()
   @Column()
@@ -45,7 +48,7 @@ export class User {
   password?: string;
 
   @Field()
-  @Column({ default: 2 })
+  @Column({ default: 'user' })
   role?: UserRole;
 
   @BeforeInsert()
@@ -54,6 +57,6 @@ export class User {
   }
 }
 export enum UserRole {
-  Admin = 1,
-  User = 2,
+  Admin = 'admin',
+  User = 'user',
 }

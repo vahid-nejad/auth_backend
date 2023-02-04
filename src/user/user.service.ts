@@ -10,9 +10,9 @@ export class UsersService {
     @InjectRepository(User) private readonly usersRepository: Repository<User>,
   ) {}
 
-  async findOne(phone: string): Promise<User | undefined> {
+  async findOne(userName: string): Promise<User | undefined> {
     return await this.usersRepository.findOne({
-      where: { phone: phone },
+      where: { userName: userName },
       relations: ['city', 'city.province'],
     });
   }

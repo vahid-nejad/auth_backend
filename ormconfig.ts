@@ -1,41 +1,19 @@
-import { ParaClinicDamage } from './src/entities/paraClinicDamage.entity';
-import { InsuranceCompany } from './src/entities/insuranceCompany.entity';
-import { TariffType } from './src/entities/tariffType.entity';
-import { MedicalCenter } from './src/entities/medicalCenter.entity';
-import { Person } from './src/entities/person.entity';
-import { PhysicianExpertise } from './src/entities/physicianExpertise.entity';
-import { DocRecievementType } from './src/entities/docRecievementType.entity';
-import { DiseaseCostType } from './src/entities/diseaseCostType.entity';
-import { Province } from './src/entities/province.entity';
-import { City } from './src/entities/city.entity';
-import { User } from 'src/entities/user.entity';
-import { ToothNum } from './src/entities/toothNum.entity';
-import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
+import { User } from './src/entities/user.entity';
+import { Post } from './src/entities/post.entity';
 
-const config: MysqlConnectionOptions & {
+import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
+
+const config: PostgresConnectionOptions & {
   seeds: string[];
   factories: string[];
 } = {
-  type: 'mysql',
-  database: 'zia_khesarat',
+  type: 'postgres',
+  database: 'testDB',
   host: 'localhost',
-  username: 'root',
-  password: 'root',
-  port: 3306,
-  entities: [
-    ToothNum,
-    User,
-    City,
-    Province,
-    DiseaseCostType,
-    DocRecievementType,
-    PhysicianExpertise,
-    MedicalCenter,
-    TariffType,
-    InsuranceCompany,
-    Person,
-    ParaClinicDamage,
-  ],
+  username: 'postgres',
+  password: 'postgres',
+  port: 5432,
+  entities: [User, Post],
 
   seeds: ['./src/seeds/**/*{.ts,.js}'],
   factories: ['./src/factories/**/*{.ts,.js}'],

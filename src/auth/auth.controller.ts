@@ -5,12 +5,15 @@ import { CreateUserDto } from 'src/base/dto/user.dto';
 import {
   Body,
   Controller,
+  Get,
   Post,
   Request,
   Response,
+  Session,
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { session } from 'passport';
 
 @Controller('auth')
 export class AuthController {
@@ -29,5 +32,10 @@ export class AuthController {
     const token = await this.authService.login(req.user);
     // res.cookie('token', token.accessToken, { httpOnly: true });
     return res.send(token);
+  }
+
+  @Get()
+  getSession(@Session() session: Record<string, any>) {
+    console.log(session.id);
   }
 }

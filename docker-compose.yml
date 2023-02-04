@@ -1,26 +1,21 @@
 version: '3'
 
-
 services:
   db:
-    image: mysql
+    image: postgres
     restart: always
     volumes:
-      - ./data/db:/var/lib/mysql
+      - ./data/db2:/var/lib/postgresql/data
     ports:
-      - 3306:3306
-   
+      - 5432:5432
+
     environment:
-      MYSQL_USER: emp
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: sakura
-      MYSQL_PASSWORD: emp2
-      
-  
+      - POSTGRES_DB=testDB
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
   adminer:
     image: adminer
     restart: always
     ports:
-    - 8080:8080
-
-    
+      - 8080:8080

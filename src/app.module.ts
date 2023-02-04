@@ -10,9 +10,19 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './user/user.module';
 import { ParaClinicDamageModule } from './para-clinic-damage/para-clinic-damage.module';
+import { ConfigModule } from '@nestjs/config';
+import { TestModule } from './test/test.module';
 
 @Module({
-  imports: [BaseModule, TypeOrmModule.forRoot(config), AuthModule, UsersModule, ParaClinicDamageModule],
+  imports: [
+    ConfigModule.forRoot(),
+    BaseModule,
+    TypeOrmModule.forRoot(config),
+    AuthModule,
+    UsersModule,
+    ParaClinicDamageModule,
+    TestModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
