@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { CreatePostDto } from 'src/dto/tes.dto';
+import { CreatePostDto } from 'src/dto/post.dto';
 
 import { TestService } from './test.service';
 

@@ -10,7 +10,6 @@ import {
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 
-import { City } from './city.entity';
 @Entity()
 @ObjectType()
 export class User {
@@ -35,9 +34,6 @@ export class User {
   @Field()
   @Column({ nullable: true })
   address?: string;
-
-  @ManyToOne((type) => City, (city) => city.id, { nullable: true })
-  city?: City;
 
   @Field()
   @Column({ nullable: true })
