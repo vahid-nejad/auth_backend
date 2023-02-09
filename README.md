@@ -24,7 +24,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This is a test project for the jwt athentication in [Nest.JS](https://github.com/nestjs/nest) framework.
 
 ## Installation
 
