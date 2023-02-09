@@ -44,6 +44,9 @@ $ sudo docker compose up
 $ npm run seed:run
 ```
 
+The User name for the Normal user is "user" and pass is just "123"
+The User name for the Admin user is "admin" and pass is just "123"
+
 ## Running the app
 
 ```bash
