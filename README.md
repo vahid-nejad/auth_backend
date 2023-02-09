@@ -32,6 +32,18 @@
 $ npm install
 ```
 
+## Running the db
+
+```bash
+$ sudo docker compose up
+```
+
+## Seeding the db
+
+```bash
+$ npm run seed:run
+```
+
 ## Running the app
 
 ```bash
@@ -71,4 +83,5 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
 # sakura_backend
