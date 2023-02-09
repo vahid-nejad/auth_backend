@@ -1,4 +1,4 @@
-import { User } from '../entities/user.entity';
+import { User, UserRole } from '../entities/user.entity';
 import { Connection } from 'typeorm';
 import { Factory, Seeder } from 'typeorm-seeding';
 import { faker } from '@faker-js/faker';
@@ -9,14 +9,23 @@ export default class CreateUser implements Seeder {
 
     // await connection.query('truncate user restart identity CASCADE');
 
-    for (let i = 1; i <= 10; i++) {
-      const user = {
-        userName: faker.internet.email(),
-        name: faker.name.firstName(),
-        password: faker.internet.password(),
-      };
-      await connection.getRepository(User).save(user);
-    }
+    const user = {
+      userName: 'admin',
+      name: faker.name.firstName(),
+      password: '123',
+      role: UserRole.Admin,
+    };
+
+    await connection.getRepository(User).save(user);
+
+    const user2 = {
+      userName: 'user',
+      name: faker.name.firstName(),
+      password: '123',
+      role: UserRole.User,
+    };
+
+    await connection.getRepository(User).save(user2);
 
     await connection.query("SET session_replication_role = 'origin';");
   }

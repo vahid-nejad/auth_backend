@@ -13,7 +13,7 @@ export default class CreatePost implements Seeder {
       const post = {
         title: faker.lorem.sentence(),
         body: faker.lorem.paragraph(),
-        user: { id: Math.ceil(i / 10) },
+        user: { id: Math.ceil(i / 2) },
       };
       await connection.getRepository(Post).save(post);
     }
