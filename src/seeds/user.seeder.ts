@@ -18,14 +18,14 @@ export default class CreateUser implements Seeder {
 
     await connection.getRepository(User).save(user);
 
-    const user2 = {
+    const user3 = {
       userName: 'user',
       name: faker.name.firstName(),
       password: '123',
       role: UserRole.User,
     };
 
-    await connection.getRepository(User).save(user2);
+    await connection.getRepository(User).save(user3);
 
     await connection.query("SET session_replication_role = 'origin';");
   }
